@@ -1,36 +1,62 @@
 .input {
     display:inline-block;
-   
-
+    position: relative;
+    top: 10px;
+    left: 10px;
 }
 
 .display{
     border: solid;
     display:inline-block;
-    width: 300px;
+    width: 1050px;
     height: 300px;
     padding: 5px;
     text-align: center;
     position: relative;
+    left:275px;
+    top: 55px;
 }
 
 .list {
     position:relative;
-    left:300px;
-    bottom:300px;
+    right: 30px;
+    bottom:270px;
+    width: 300px;
+    text-align: center;
 }
 
 header { 
     text-align: center;
-    background-color: black;
+    background-color:blue;
     color: white;
     padding: 20px;
-    border: solid black;
-    font-size: larger;
+    border: solid white;
+    font-size: 50px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 
 body {
-    background-color: lightskyblue;
+    background-color:white;
     color:black;
+}
+
+
+.row {
+    position: relative;
+    left: 137px;
+    bottom: 100px;
+    width: 1050px;
+}
+
+.inputValue {
+    width: 400px;
+    
+}
+
+h3 {
+    position: relative;
+    bottom: 50px;
+    right: 70px;
+    
 }

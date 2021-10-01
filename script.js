@@ -6,7 +6,7 @@ var inputValue = document.querySelector(".inputValue");
 var city = document.querySelector(".name")
 var desc = document.querySelector(".desc")
 var temp = document.querySelector(".temp")
-var img = document.querySelector(".img")
+//var img = document.querySelector(".img")
 //day1
 var temperature= document.querySelector(".temperature");
 var wind = document.querySelector(".wind");
@@ -41,13 +41,15 @@ $("#searchHist").on('click', 'li', function() {
         var nameValue = data["name"];
         var tempValue = data["main"]["temp"];
         var descValue = data["weather"][0]["description"];
-        
         var todaysDate = moment().format("dddd, MMMM Do YYYY");
         $(".todaysDate").text(todaysDate);
+        var iconcode = data["weather"][0]["icon"]
+        var iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
+        $('#wicon').attr('src', iconurl);
         city.innerHTML=nameValue;
         temp.innerHTML= "Temperature: " +tempValue;
         desc.innerHTML=descValue;
-        //img=imgValue;
+        
         
 
     });
@@ -65,6 +67,9 @@ $("#searchHist").on('click', 'li', function() {
         wind.innerHTML = "Wind Speed: "+ windValue;
         var humidityValue = data["list"][1]["main"]["humidity"];
         humidity.innerHTML = "Humidity: "+humidityValue;
+        var iconcode1 = data["list"][1]["weather"][0]["icon"];
+        var iconurl1 = "http://openweathermap.org/img/w/" + iconcode1 + ".png";
+        $('#wicon1').attr('src', iconurl1);
 
         var day2 = moment().add(2,'days').format("MM /DD /YY");
         $(".day2").text(day2);
@@ -74,6 +79,9 @@ $("#searchHist").on('click', 'li', function() {
         wind2.innerHTML = "Wind Speed: "+ windValue2;
         var humidityValue2 = data["list"][2]["main"]["humidity"];
         humidity2.innerHTML = "Humidity: "+humidityValue2;
+        var iconcode2 = data["list"][2]["weather"][0]["icon"];
+        var iconurl2 = "http://openweathermap.org/img/w/" + iconcode2 + ".png";
+        $('#wicon2').attr('src', iconurl2);
 
         var day3 = moment().add(3,'days').format("MM /DD /YY");
         $(".day3").text(day3);
@@ -83,6 +91,9 @@ $("#searchHist").on('click', 'li', function() {
         wind3.innerHTML = "Wind Speed: "+ windValue3;
         var humidityValue3 = data["list"][3]["main"]["humidity"];
         humidity3.innerHTML = "Humidity: "+humidityValue3;
+        var iconcode3 = data["list"][3]["weather"][0]["icon"];
+        var iconurl3 = "http://openweathermap.org/img/w/" + iconcode3 + ".png";
+        $('#wicon3').attr('src', iconurl3);
 
         var day4 = moment().add(4,'days').format("MM /DD /YY");
         $(".day4").text(day4);
@@ -92,6 +103,9 @@ $("#searchHist").on('click', 'li', function() {
         wind4.innerHTML = "Wind Speed: "+ windValue4;
         var humidityValue4 = data["list"][4]["main"]["humidity"];
         humidity4.innerHTML = "Humidity: "+humidityValue4;
+        var iconcode4 = data["list"][4]["weather"][0]["icon"];
+        var iconurl4 = "http://openweathermap.org/img/w/" + iconcode4 + ".png";
+        $('#wicon4').attr('src', iconurl4);
 
         var day5 = moment().add(5,'days').format("MM /DD /YY");
         $(".day5").text(day5);
@@ -101,9 +115,16 @@ $("#searchHist").on('click', 'li', function() {
         wind5.innerHTML = "Wind Speed: "+ windValue5;
         var humidityValue5 = data["list"][5]["main"]["humidity"];
         humidity5.innerHTML = "Humidity: "+humidityValue5;
+        var iconcode5 = data["list"][5]["weather"][0]["icon"];
+        var iconurl5 = "http://openweathermap.org/img/w/" + iconcode5 + ".png";
+        $('#wicon5').attr('src', iconurl5);
+
+      
 
 
     });
+
+   
 });
 
 function listItems(searchHistory) {
@@ -119,14 +140,39 @@ button.addEventListener("click",  function () {
         var nameValue = data["name"];
         var tempValue = data["main"]["temp"];
         var descValue = data["weather"][0]["description"];
-        //var iconValue = data["weather"][0]["icon"];
         var todaysDate = moment().format("dddd, MMMM Do YYYY");
         $(".todaysDate").text(todaysDate);
-        var img = $("<img>").attr("src", "https://openweathermap.org/img/w/" + data[weather][0][icon] + ".png")
+        var iconcode = data["weather"][0]["icon"]
+        var iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
+        $('#wicon').attr('src', iconurl);
         city.innerHTML=nameValue;
         temp.innerHTML= "Temperature: " +tempValue;
         desc.innerHTML=descValue;
-        img.appendTo('.img');
+
+        var lat = data["coord"]["lat"];
+        //console.log(lat);
+        var lon = data["coord"]["lon"];
+
+        fetch("https://api.openweathermap.org/data/2.5/onecall?lat="+lat+"&lon="+lon+"&appid="+apiKey)
+        .then(response => response.json())
+        .then(data => {
+          console.log(data);
+          
+          var uvi = data["current"]["uvi"];
+          console.log(uvi);
+
+          if (uvi < 4) {
+              $(".btn").addClass("btn-success");
+          } else if (uvi < 7){
+             $(".btn").addClass("btn-warning");
+          } else {
+             $(".btn").addClass("btn-danger");
+          }
+          $(".btn").text(uvi)
+          
+
+        });
+   
         
 
     });
@@ -144,6 +190,9 @@ button.addEventListener("click",  function () {
         wind.innerHTML = "Wind Speed: "+ windValue;
         var humidityValue = data["list"][1]["main"]["humidity"];
         humidity.innerHTML = "Humidity: "+humidityValue;
+        var iconcode1 = data["list"][1]["weather"][0]["icon"];
+        var iconurl1 = "http://openweathermap.org/img/w/" + iconcode1 + ".png";
+        $('#wicon1').attr('src', iconurl1);
 
         var day2 = moment().add(2,'days').format("MM /DD /YY");
         $(".day2").text(day2);
@@ -153,6 +202,9 @@ button.addEventListener("click",  function () {
         wind2.innerHTML = "Wind Speed: "+ windValue2;
         var humidityValue2 = data["list"][2]["main"]["humidity"];
         humidity2.innerHTML = "Humidity: "+humidityValue2;
+        var iconcode2 = data["list"][2]["weather"][0]["icon"];
+        var iconurl2 = "http://openweathermap.org/img/w/" + iconcode2 + ".png";
+        $('#wicon2').attr('src', iconurl2);
 
         var day3 = moment().add(3,'days').format("MM /DD /YY");
         $(".day3").text(day3);
@@ -162,6 +214,9 @@ button.addEventListener("click",  function () {
         wind3.innerHTML = "Wind Speed: "+ windValue3;
         var humidityValue3 = data["list"][3]["main"]["humidity"];
         humidity3.innerHTML = "Humidity: "+humidityValue3;
+        var iconcode3 = data["list"][3]["weather"][0]["icon"];
+        var iconurl3 = "http://openweathermap.org/img/w/" + iconcode3 + ".png";
+        $('#wicon3').attr('src', iconurl3);
 
         var day4 = moment().add(4,'days').format("MM /DD /YY");
         $(".day4").text(day4);
@@ -171,6 +226,9 @@ button.addEventListener("click",  function () {
         wind4.innerHTML = "Wind Speed: "+ windValue4;
         var humidityValue4 = data["list"][4]["main"]["humidity"];
         humidity4.innerHTML = "Humidity: "+humidityValue4;
+        var iconcode4 = data["list"][4]["weather"][0]["icon"];
+        var iconurl4 = "http://openweathermap.org/img/w/" + iconcode4 + ".png";
+        $('#wicon4').attr('src', iconurl4);
 
         var day5 = moment().add(5,'days').format("MM /DD /YY");
         $(".day5").text(day5);
@@ -180,16 +238,20 @@ button.addEventListener("click",  function () {
         wind5.innerHTML = "Wind Speed: "+ windValue5;
         var humidityValue5 = data["list"][5]["main"]["humidity"];
         humidity5.innerHTML = "Humidity: "+humidityValue5;
+        var iconcode5 = data["list"][5]["weather"][0]["icon"];
+        var iconurl5 = "http://openweathermap.org/img/w/" + iconcode5 + ".png";
+        $('#wicon5').attr('src', iconurl5);
 
 
     });
 
-   
     if(archive.indexOf(inputValue.value) === -1) {
         archive.push(inputValue.value);
         window.localStorage.setItem("archive", JSON.stringify(archive))
         listItems(inputValue.value)
     }
+
+
 
 });
 
@@ -197,4 +259,3 @@ for(var i = 0 ; i<archive.length; i++) {
     listItems(archive[i]);
 }
 })
-
