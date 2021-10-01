@@ -45,7 +45,7 @@ body {
 .row {
     position: relative;
     left: 137px;
-    bottom: 100px;
+    
     width: 1050px;
 }
 
@@ -56,7 +56,7 @@ body {
 
 h3 {
     position: relative;
-    bottom: 50px;
+    
     right: 70px;
     
 }

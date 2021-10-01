@@ -1,5 +1,8 @@
 Weather Dashboard
 
+https://afunkhouser.github.io/week6_weatherApp/
+https://github.com/afunkhouser/week6_weatherApp
+
 The Weather Dashboard is designed for the user to get weather information for any city. When the user types in a city: the city name, date, an icon, description, temperature, and UV index will be displayed. Along with a 5 day forecast, and a population of the search history. 
 
 code used:
@@ -16,6 +19,9 @@ Bootstrap
 
 
 Screenshots
+
+<img width="1338" alt="Screen Shot 2021-09-30 at 5 38 35 PM" src="https://user-images.githubusercontent.com/87675400/135548668-d868eb56-a824-444a-a240-642f0cc87673.png">
+
 
 
 
